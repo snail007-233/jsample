@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://code.alibabatech.com/schema/dubbo  
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<bean name="cacheService" class="com.gome.memberCore.utils.tools.impl.CacheServiceDirect">
+		<property name="zookeeperIpAndPort" value="10.58.57.58:2181,10.58.57.54:2181,10.58.57.48:2181"/>
+		<property name="business" value="SSO"/>
+	</bean>
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="dubbo-router" />
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="10.58.57.58:2181,10.58.57.54:2181,10.58.57.48:2181" />
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:reference  interface="com.gome.userCenter.facade.register.IUserRegisterFacade" id="userRegisterFacade"  group="unifyLogin"/>
+	
+	<dubbo:reference interface="com.gome.userCenter.facade.login.IUserLoginFacade" id="userLoginFacade" group="unifyLogin"/>
+	
+	<dubbo:reference id="userSsoFacade" interface="com.gome.sso.facade.IUserSsoFacade" />
+		
+	<dubbo:reference interface="com.gome.userCenter.facade.userservice.profile.IUserInfoFacade" id="userInfoFacade" group="unifyLogin"/>
+	
+	<dubbo:reference interface="com.gome.userCenter.facade.userservice.profile.IEmailMobileFacade" id="emailMobileFacade" group="unifyLogin"/>
+	
+	<dubbo:reference interface="com.gome.sso.common.outside.SsoUserCookieToolsOutside" id="ssoUserCookieToolsOutside" group="unifyLogin"/>
+	
+</beans>
