@@ -24,7 +24,7 @@ public class Bootstrap {
 				AppConfig.setPrePath("development");
 			}
 			//因为logback的影响,netty会输出调试信息，这里阻止netty输出调试信息
-			//io.netty.util.internal.logging.InternalLoggerFactory.setDefaultFactory(new io.netty.util.internal.logging.JdkLoggerFactory());
+			io.netty.util.internal.logging.InternalLoggerFactory.setDefaultFactory(new io.netty.util.internal.logging.JdkLoggerFactory());
 			AppLogger.logger().info("Guppy service started");
 			new SimpleHttpServer(new File(AppConfig.getServerIniFilePath())).run();
 		} catch (Exception ex) {

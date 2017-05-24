@@ -33,7 +33,7 @@ public class LogBackConfigLoader {
 					configurator.setContext(lc);
 					lc.reset();
 					configurator.doConfigure(externalConfigFileLocation);
-					StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
+					//StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
 				}
 			}	
 		}
