@@ -1,2 +1,5 @@
 安装:
-mvn clean install
+cd lib
+mvn  install
+cd ..
+mvn  install
