@@ -11,7 +11,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 public class Welcome {
 
 	public boolean before(String method, SimpleResponse response, SimpleRequest request) {
-		do_default(response, request);
+		
 		return true;
 	}
 
